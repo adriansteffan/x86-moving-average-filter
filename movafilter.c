@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 extern void filter4(float alpha, float beta, int s, int *start, int length, int *dest) asm("filter");
  
@@ -101,8 +102,8 @@ void cFilter4(float alpha, float beta, int s, int *start, int length, int *dest)
  
 int main(int argc, char** argv) { 
 
-	
-	 if(argc == 2 && argv[1] == "runtest"){
+	 
+	if(argc == 2 && !strcmp(argv[1], "runtest")){
 		//Default behavior if no argument is specified
 		
 		// Note: Small ifferences between the filtered values and the validation are not necessarily a sign of the filter malfunctioning.
@@ -157,6 +158,7 @@ int main(int argc, char** argv) {
 	
 	}else if (argc == 6){
 		
+		
 		FILE *fp = fopen(argv[5], "r");
 		int lines;
 		while(!feof(fp)){
@@ -170,7 +172,7 @@ int main(int argc, char** argv) {
 		int filteredValues[lines];
 		
 		for (int i = 0; i < lines; i++){
-			fscanf(fp, "%d\n", &unfilteredValues[i]);
+			fscanf(fp, "%1d\n", &unfilteredValues[i]);
 		}
 		
 		
@@ -179,21 +181,22 @@ int main(int argc, char** argv) {
 		
 		int *start_ptr = &unfilteredValues[0];
 		int *dest_ptr = &filteredValues[0];
-	
+		
 		filter4( atof(argv[2]), atof(argv[3]), atoi(argv[4]), start_ptr, lines, dest_ptr);
 		
 		FILE *fpout = fopen(argv[6], "w");
 		
 		for (int i = 0; i < lines; i++){
-			fprintf(fpout, "%d\n", &filteredValues[i]);
+			fprintf(fpout, "%d\n", filteredValues[i]);
 		}
 		
+
 		fclose(fpout);
 		
 	
 	}else{
-		printf("Usage: movafilter [float alpha] [float beta] [int starting value] [source filepath] [output filepath]");
-		printf("To run the testcases: movafilter runtest");
+		printf("Usage: movafilter [float alpha] [float beta] [int starting value] [source filepath] [output filepath]\n");
+		printf("To run the testcases: movafilter runtest\n");
 	}
 	
  }
