@@ -159,32 +159,38 @@ int main(int argc, char** argv) {
 	}else if (argc == 6){
 		
 		
-		FILE *fp = fopen(argv[5], "r");
-		int lines;
+		FILE *fp = fopen(argv[4], "r");
+		int lines = 0;
+		
+
 		while(!feof(fp)){
 			char ch = fgetc(fp);
 			if(ch == '\n'){
 				lines++;
 			}
 		}
+
+		
+		rewind(fp);
 		
 		int unfilteredValues[lines];
 		int filteredValues[lines];
 		
 		for (int i = 0; i < lines; i++){
-			fscanf(fp, "%1d\n", &unfilteredValues[i]);
+		
+			fscanf(fp, "%d\n", &unfilteredValues[i]);
+
 		}
-		
-		
-		
+
+				
 		fclose(fp);
 		
 		int *start_ptr = &unfilteredValues[0];
 		int *dest_ptr = &filteredValues[0];
 		
-		filter4( atof(argv[2]), atof(argv[3]), atoi(argv[4]), start_ptr, lines, dest_ptr);
+		filter4( atof(argv[1]), atof(argv[2]), atoi(argv[3]), start_ptr, lines, dest_ptr);
 		
-		FILE *fpout = fopen(argv[6], "w");
+		FILE *fpout = fopen(argv[5], "w");
 		
 		for (int i = 0; i < lines; i++){
 			fprintf(fpout, "%d\n", filteredValues[i]);
