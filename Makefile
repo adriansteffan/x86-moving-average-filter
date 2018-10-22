@@ -16,10 +16,6 @@ $(PROG): $(CSRC)
 	$(NASM) $(NFLAGS) -o $(OBJECTS) filter.asm
 	$(CC) $(CFLAGS) -o $(PROG) $(CSRC) $(OBJECTS)
 
-# make run 	
-run: $(PROG)
-	./$(PROG)
-	
 # make clean
 clean:
 	rm -f $(OBJECTS) $(PROG) filter
