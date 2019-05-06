@@ -53,7 +53,7 @@ movafilter runtest
 ```
 
 Note: Small differences between the filtered values and the validation are not necessarily a sign of the filter malfunctioning.
-They are probably be caused by differences in the handling of floating point between the c standard library and the assembler routine
+They are probably caused by differences in the handling of floating point between the c standard library and the assembler routine
 (especially big floating-point values seem to be affected here). It is best to look at the actual output of the validation function when deciding if the asm filter is working correctly.
 
 
