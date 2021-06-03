@@ -59,7 +59,7 @@ They are probably caused by differences in the handling of floating point betwee
 
 ## Authors
 
-* **Adrian Steffan** - *Coding* [adriansteffan](https://github.com/adriansteffan)
+* **Adrian Steffan** - *Coding* [adriansteffan](https://github.com/adriansteffan) [website](https://adriansteffan.com/)
 * **Vera Kowalczuk** - *Documentation and project structure* [verakowalczuk](https://github.com/verakowalczuk)
 * **Uzay Gök** - *Testcase design*
 
